@@ -1,0 +1,55 @@
+<style type="text/css">
+    .historyproducts ul{
+        padding: 0px; 
+    }
+    .historyproducts_title{
+        text-align: center;
+        font-weight: bold;
+        margin: 10px 0px;
+    }
+    .historyproducts ul li{
+        list-style: none;   
+        margin-bottom: 20px;
+    }
+    .historyproducts_img{
+        text-align: center;
+    }
+    .historyproducts_name{
+        text-align: center;
+    }
+    .historyproducts_price{
+        text-align: center;
+        color: #ff0000;
+    }
+    .historyproducts_link{
+        text-align: center;
+    }
+</style>
+
+{if $h_products}
+    <div class="historyproducts">
+    <div class="historyproducts_title">Вы смотрели</div>
+    <ul>
+    {foreach from=$h_products item=product}
+        <li>
+        <div class="historyproducts_img">
+        <a href="{$wa->shop->productUrl($product)}">
+        {$wa->shop->productImgHtml($product, '100x100', ['itemprop' => 'image', 'alt' => $product.name])}  
+        </a>
+        </div>
+        <div class="historyproducts_name">
+        <a href="{$product.frontend_url}">
+            <span itemprop="name">{$product.name|truncate:60}</span>
+        </a>
+        </div>
+        <div class="historyproducts_price">
+        <span class="price nowrap" itemprop="price">{shop_currency($product.price)}</span>
+        </div>
+        </li>
+    {/foreach}
+    </ul>
+    </div>
+    <div class="historyproducts_link">
+        <a  href="{$wa->getUrl('shop/frontend/historyproducts')}">Все товары</a>
+    </div>
+{/if}
