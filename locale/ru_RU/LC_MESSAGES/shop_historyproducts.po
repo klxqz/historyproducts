@@ -108,3 +108,6 @@ msgstr "Сохранено"
 
 msgid "Unable to save the template. Check the write permissions "
 msgstr "Не удаётся сохранить шаблон. Проверьте права на запись "
+
+msgid "сode helper output"
+msgstr "код хелпера вывода"
