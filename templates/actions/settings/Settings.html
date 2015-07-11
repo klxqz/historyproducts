@@ -7,108 +7,209 @@
         overflow-y: hidden;
         overflow-x: auto;
     }
+    .plugin-menu{
+        float: right;
+        list-style: none;
+    }
+
+    .plugin-menu li{
+        float: left;
+        margin-left: 10px;
+    }
+    .plugin-menu li a{
+        text-decoration: underline;
+    }
+    .geshifilter{
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        color: #222;
+        display: block;
+        line-height: 1.3;
+        margin: 0.5em;
+        overflow: auto;
+        padding: 0.5em;
+    }
 </style>
-<h1>История просмотренных товаров</h1>
-<div     class="fields form">
+<h1>[`History of visited products`]</h1>
+
+<ul class="plugin-menu">
+    <li><a target="_blank" href="http://www.webasyst.ru/store/plugin/shop/historyproducts/reviews/">[`Leave a comment about the plugin`]</a></li>
+    <li><a href="mailto:support@wa-plugins.ru">[`Developer support plugin`]</a></li>
+    <li><a target="_blank" href="http://wa-plugins.ru/">WA-PLUGINS.ru - [`website developer`]</a></li>
+</ul>
+
+<div class="fields form">
     <form action="?plugin=historyproducts&action=save" method="post" id="plugins-settings-form">
-    {$wa->csrf()}
-    
-    
-    {literal}
-    <p>{shopHistoryproductsPlugin::display()} - Код хелпера вывода</p>
-    {/literal}
-    <p class="gray">
-    <i class="icon16 exclamation"></i>
-    Используя этот код Вы можете осуществить вывод "Истории просмотренных товаров" в любом месте вашей темы оформления, это позволяет избавиться от привязки к конкретным местам вывода плагина
-    </p>
-    
-    <div class="field">
-        <div class="name">
-            Статус
-        </div>
-        <div class="value">
-            <select name="shop_historyproducts[status]">
-                <option {if $settings.status == 1} selected="selected"{/if} value="1">Включен</option>
-                <option {if $settings.status == 0} selected="selected"{/if} value="0">Выключен</option>
-            </select>
-        </div>
-    </div>
-    
-    <div class="field">
-        <div class="name">
-            Вывод плагина в стандартном месте
-        </div>
-        <div class="value">
-            <select name="shop_historyproducts[default_output]">
-                <option {if $settings.default_output == 1} selected="selected"{/if} value="1">Включен</option>
-                <option {if $settings.default_output == 0} selected="selected"{/if} value="0">Выключен</option>
-            </select>
+        {$wa->csrf()}
+
+        {literal}
+            <p><b>{shopHistoryproductsPlugin::display()}</b> - [`сode helper output`]</p>
             <p class="gray">
-            <i class="icon16 exclamation"></i>
-            Вы можете отключить стандартный вывод, это может быть полезно если вы используете хелпер вывода
+                <i class="icon16 exclamation"></i>
+                [`Using this code, you can make the output "Stories Viewed Products" anywhere on your theme.`]
             </p>
-        </div>
-    </div>
-    
 
-    <div class="field">
-        <div class="name">
-            Количество выводимых товаров
-        </div>
-        <div class="value">
-            <input type="text" name="shop_historyproducts[count]" value="{$settings.count|escape}"  />
-        </div>
-    </div>
-    <div class="field">
-        <div class="name">
-            Порядок вывода
-        </div>
-        <div class="value">
-            <select name="shop_historyproducts[sort]">
-            <option {if $settings.sort == 0} selected=""{/if} value="0">Прямой порядок</option>
-            <option {if $settings.sort == 1} selected=""{/if} value="1">Обратный порядок</option>
-            </select>
-        </div>
-    </div>
-    
-    <div class="field">
-        <div class="name">
-            Заголовок страницы
-        </div>
-        <div class="value">
-            <input type="text" name="shop_historyproducts[page_title]" value="{$settings.page_title|escape}"  />
-            
-        </div>
-    </div>
-    
-    
-    
+            <p><b>{shopHistoryproductsPlugin::products($count)}</b> - [`Getting a list of viewed products, where $count - the maximum number of returns the goods.`]
+                <br/>
+                [`Code to display viewed products using a standard template list-thumbs.html:`]
+            </p>
+            <div class="geshifilter">
+                <pre>{include file="list-thumbs.html" products=shopHistoryproductsPlugin::products(5)}</pre>
+            </div>
 
-    
-    <div class="field">
-        <div class="name">Шаблон<br /><span class="hint">HTML + Smarty</span></div>
-        <div class="value no-shift">
-            <div id="s-editor-core-wrapper">
-                <textarea id="sf-template" class="body" name="template">{$template}</textarea>
+
+        {/literal}
+        <div class="field">
+            <div class="name">
+                [`Status plugin`]
+            </div>
+            <div class="value">
+                <select name="shop_historyproducts[status]">
+                    <option {if $settings.status == 1} selected="selected"{/if} value="1">[`On`]</option>
+                    <option {if $settings.status == 0} selected="selected"{/if} value="0">[`Off`]</option>
+                </select>
             </div>
         </div>
-        
-        {if $change_tpl}
-        <div class="value">
-            <p class="gray"><i class="icon16 exclamation"></i>Внимание! Шаблон по умолчанию был изменен</p>
-            <input type="checkbox" name="shop_historyproducts[reset_tpl]" value="1"  /> - Сбросить изменения, использовать шаблон по умолчанию
-        </div>
-        {/if}
-    </div>
 
-    <div class="field">
-        <div class="value submit">
-            <input type="submit" class="button green" value="Сохранить">
-            <span id="plugins-settings-form-status" style="display:none">
-                <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
-            </span>
+        <div class="field-group">
+            <div class="field">
+                <div class="name">
+                    [`Output plugin a standard location`]
+                </div>
+                <div class="value">
+                    <select name="shop_historyproducts[default_output]">
+                        <option {if $settings.default_output == 1} selected="selected"{/if} value="1">[`On`]</option>
+                        <option {if $settings.default_output == 0} selected="selected"{/if} value="0">[`Off`]</option>
+                    </select>
+                    <p class="gray">
+                        <i class="icon16 exclamation"></i>
+                        [`You can disable the standard output. This can be useful if you use a helper output.`]
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="field-group">
+            <div class="field">
+                <div class="name">
+                    [`Page URl`]
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_historyproducts[page_url]" value="{$settings.page_url|escape}"  />
+
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="name">
+                    [`Page title`]
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_historyproducts[page_title]" value="{$settings.page_title|escape}"  />
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">
+                    Meta keywords
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_historyproducts[meta_keywords]" value="{$settings.meta_keywords|escape}"  />
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">
+                    Meta description
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_historyproducts[meta_description]" value="{$settings.meta_description|escape}"  />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="field-group">
+            <div class="field">
+                <div class="name">
+                    [`The number of displayed products`]
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_historyproducts[count]" value="{$settings.count|escape}"  />
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="name">
+                    [`Title block`]
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_historyproducts[title]" value="{$settings.title|escape}"  />
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="name">
+                    [`Image size`]
+                </div>
+                <div class="value">
+                    <input type="text" name="shop_historyproducts[img_size]" value="{$settings.img_size|escape}"  />
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">
+                    [`Show button "Clear All"`]
+                </div>
+                <div class="value">
+                    <input type="hidden" name="shop_historyproducts[clearlist]" value="0" />
+                    <input {if $settings.clearlist} checked="checked"{/if} type="checkbox" name="shop_historyproducts[clearlist]" value="1" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">
+                    [`Display a brief description`]
+                </div>
+                <div class="value">
+                    <input type="hidden" name="shop_historyproducts[summary]" value="0" />
+                    <input {if $settings.summary} checked="checked"{/if} type="checkbox" name="shop_historyproducts[summary]" value="1" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">
+                    [`Use slider`]
+                </div>
+                <div class="value">
+                    <input type="hidden" name="shop_historyproducts[use_slider]" value="0"  />
+                    <input type="checkbox" {if $settings.use_slider}checked="checked"{/if} name="shop_historyproducts[use_slider]" value="1"  />
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="field">
+            <div class="name">[`Template`]<br /><span class="hint">HTML + Smarty</span></div>
+            <div class="value no-shift">
+                <div id="s-editor-core-wrapper">
+                    <textarea id="sf-template" class="body" name="template">{$template}</textarea>
+                </div>
+            </div>
+
+            {if $change_tpl}
+                <div class="value">
+                    <p class="gray"><i class="icon16 exclamation"></i>[`Warning! The default template has been modified.`]</p>
+                    <input type="checkbox" name="shop_historyproducts[reset_tpl]" value="1"  /> - [`Reset changes, use the default template.`]
+                </div>
+            {/if}
+        </div>
+
+        <div class="field">
+            <div class="value submit">
+                <input type="submit" class="button green" value="Сохранить">
+                <span id="plugins-settings-form-status" style="display:none">
+                    <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
+                </span>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -120,13 +221,13 @@
             height: "dynamic",
             lineWrapping: true
         });
-        $("#sf-template").change(function() {
+        $("#sf-template").change(function () {
             c.setValue($(this).val())
         });
         $("#sf-settings").submit(function () {
             var f = $(this);
             $.post(f.attr('action'), f.serialize(), function (response) {
-                if(response.status == 'ok') {
+                if (response.status == 'ok') {
                     $('#wa-design-button').removeClass('red').addClass('green');
                     $("#wa-editor-status-fail").hide()
                     $("#wa-editor-status-ok span").html(response.data.message);

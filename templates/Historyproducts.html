@@ -1,55 +1,91 @@
-<style type="text/css">
-    .historyproducts ul{
-        padding: 0px; 
-    }
-    .historyproducts_title{
-        text-align: center;
-        font-weight: bold;
-        margin: 10px 0px;
-    }
-    .historyproducts ul li{
-        list-style: none;   
-        margin-bottom: 20px;
-    }
-    .historyproducts_img{
-        text-align: center;
-    }
-    .historyproducts_name{
-        text-align: center;
-    }
-    .historyproducts_price{
-        text-align: center;
-        color: #ff0000;
-    }
-    .historyproducts_link{
-        text-align: center;
-    }
-</style>
-
 {if $h_products}
+    {if $settings.use_slider}
+        <script type="text/javascript" src="{$wa_app_static_url}plugins/historyproducts/js/bxslider/jquery.bxslider.min.js"></script>
+        <link rel="stylesheet" href="{$wa_app_static_url}plugins/historyproducts/js/bxslider/jquery.bxslider.css" />
+    {/if}
+    <style type="text/css">
+        .historyproducts_title{ text-align: center; font-weight: bold;}
+        .historyproducts ul li{ list-style: none; margin-bottom: 20px; text-align: center; }
+        .historyproducts ul li img{ margin: 0 auto; }
+        .historyproducts .compare-at-price{ text-decoration: line-through; }
+        .historyproducts .price{ font-weight: bold;}
+        .historyproducts .bx-wrapper .bx-viewport{ border: none; box-shadow: none; }
+        .historyproducts_link{ text-align: center; font-weight: bold; }
+        .historyproducts h5{ font-weight: bold;}
+    </style>
+
+
+
     <div class="historyproducts">
-    <div class="historyproducts_title">Вы смотрели</div>
-    <ul>
-    {foreach from=$h_products item=product}
-        <li>
-        <div class="historyproducts_img">
-        <a href="{$wa->shop->productUrl($product)}">
-        {$wa->shop->productImgHtml($product, '100x100', ['itemprop' => 'image', 'alt' => $product.name])}  
-        </a>
+        <div class="historyproducts_title">{$settings.title|escape}</div>
+        <ul>
+            {foreach $h_products as $p}
+                <li itemscope itemtype ="http://schema.org/Product">
+                    <div class="image">
+                        <a href="{$p.frontend_url}" title="{$p.name}{if $p.summary} &mdash; {strip_tags($p.summary)}{/if}">
+                            {$badge_html = $wa->shop->badgeHtml($p.badge)}
+                            {if $badge_html}
+                                <div class="corner top right">{$badge_html}</div>
+                            {/if}
+                            {$wa->shop->productImgHtml($p, $settings.img_size, ['itemprop' => 'image', 'alt' => $p.name])}
+                            <h5 itemprop="name">
+                                {$p.name}
+                            </h5>
+                            {if $p.rating > 0}
+                                <span class="rating nowrap">{$wa->shop->ratingHtml($p.rating)}</span>
+                            {/if}
+                        </a>
+                    </div><br>
+
+                    {if !empty($settings.summary) && $p.summary}<p itemprop="description">{$p.summary|strip_tags|truncate:255}</p>{/if}
+
+                    <div itemprop="offers" class="offers" itemscope itemtype="http://schema.org/Offer">
+                        {if $p.compare_price > 0}<span class="compare-at-price nowrap"> {shop_currency_html($p.compare_price)} </span>{/if}
+                        <span class="price nowrap" itemprop="price">{shop_currency_html($p.price)}</span>
+                    </div>
+                </li>
+            {/foreach}
+        </ul>
+
+        <div class="historyproducts_link">
+            <a  href="{$wa->getUrl('shop/frontend/historyproducts')}">[`All products`]</a>
         </div>
-        <div class="historyproducts_name">
-        <a href="{$product.frontend_url}">
-            <span itemprop="name">{$product.name|truncate:60}</span>
-        </a>
-        </div>
-        <div class="historyproducts_price">
-        <span class="price nowrap" itemprop="price">{shop_currency($product.price)}</span>
-        </div>
-        </li>
-    {/foreach}
-    </ul>
-    </div>
-    <div class="historyproducts_link">
-        <a  href="{$wa->getUrl('shop/frontend/historyproducts')}">Все товары</a>
+        {if !empty($settings.clearlist)}
+            <div class="historyproducts_link">
+                <a class="historyproducts-clearlist"  href="{$wa->getUrl('shop/frontend/clearlist')}">[`Clear list`]</a>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(document).on('click', '.historyproducts-clearlist', function () {
+                        var url = $(this).attr('href');
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            dataType: 'json',
+                            success: function (data, textStatus, jqXHR) {
+                                if (data.status == 'ok') {
+                                    $('.historyproducts').remove();
+                                }
+                            }
+                        });
+                        return false;
+                    });
+                })
+            </script>
+        {/if}
+        {if $settings.use_slider}
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.historyproducts ul').bxSlider({
+                        minSlides: 1,
+                        maxSlides: 1,
+                        slideMargin: 10,
+                        moveSlides: 1,
+                        pager: false
+                    });
+                });
+            </script>
+        {/if}
+
     </div>
 {/if}

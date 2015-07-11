@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shop/plugins/historyproducts\n"
+"POT-Creation-Date: 2014-01-29 02:23-1100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: shop/plugins/migrate\n"
+"Language-Team: shop/plugins/historyproducts\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.7.4\n"
+"Language: en_US\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+msgid "All products"
+msgstr ""
+
+msgid "Clear list"
+msgstr ""
+
+msgid "History of visited products"
+msgstr ""
+
+msgid "Leave a comment about the plugin"
+msgstr ""
+
+msgid "Developer support plugin"
+msgstr ""
+
+msgid "website developer"
+msgstr ""
+
+msgid "Using this code, you can make the output \"Stories Viewed Products\" anywhere on your theme."
+msgstr ""
+
+msgid "Getting a list of viewed products, where $count - the maximum number of returns the goods."
+msgstr ""
+
+msgid "Code to display viewed products using a standard template list-thumbs.html:"
+msgstr ""
+
+msgid "Status plugin"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Output plugin a standard location"
+msgstr ""
+
+msgid "You can disable the standard output. This can be useful if you use a helper output."
+msgstr ""
+
+msgid "Page URl"
+msgstr ""
+
+msgid "Page title"
+msgstr ""
+
+msgid "The number of displayed products"
+msgstr ""
+
+msgid "Title block"
+msgstr ""
+
+msgid "Image size"
+msgstr ""
+
+msgid "Show button \"Clear All\""
+msgstr ""
+
+msgid "Display a brief description"
+msgstr ""
+
+msgid "Use slider"
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "Warning! The default template has been modified."
+msgstr ""
+
+msgid "Reset changes, use the default template."
+msgstr ""
+
+msgid "You viewed"
+msgstr ""
+
+msgid "Viewed products"
+msgstr ""
+
+msgid "List of items that the buyer was looking"
+msgstr ""
+
+msgid "Do not defined template"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Unable to save the template. Check the write permissions "
+msgstr ""

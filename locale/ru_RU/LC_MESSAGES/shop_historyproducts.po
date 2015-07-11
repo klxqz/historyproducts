@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shop/plugins/historyproducts\n"
+"POT-Creation-Date: 2013-02-11 13:34+0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: shop/plugins/historyproducts\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.7.4\n"
+"Language: ru_RU\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+msgid "All products"
+msgstr "Все товары"
+
+msgid "Clear list"
+msgstr "Очистить список"
+
+msgid "History of visited products"
+msgstr "История просмотренных товаров"
+
+msgid "Leave a comment about the plugin"
+msgstr "Оставить отзыв о плагине"
+
+msgid "Developer support plugin"
+msgstr "Поддержка разработчика плагина"
+
+msgid "website developer"
+msgstr "сайт разработчика"
+
+msgid "Using this code, you can make the output \"Stories Viewed Products\" anywhere on your theme."
+msgstr "Используя этот код Вы можете осуществить вывод \"Истории просмотренных товаров\" в любом месте вашей темы оформления, это позволяет избавиться от привязки к конкретным местам вывода плагина."
+
+msgid "Getting a list of viewed products, where $count - the maximum number of returns the goods."
+msgstr "Получение списка просмотренных товаров, где $count - максимальное количество возращаемых товаров."
+
+msgid "Code to display viewed products using a standard template list-thumbs.html:"
+msgstr "Код для вывода просмотренных товаров с использованием стандартного шаблона list-thumbs.html:"
+
+msgid "Status plugin"
+msgstr "Статус плагина"
+
+msgid "On"
+msgstr "Включен"
+
+msgid "Off"
+msgstr "Выключен"
+
+msgid "Output plugin a standard location"
+msgstr "Вывод плагина в стандартном месте"
+
+msgid "You can disable the standard output. This can be useful if you use a helper output."
+msgstr "Вы можете отключить стандартный вывод. Это может быть полезно, если вы используете хелпер вывода."
+
+msgid "Page URl"
+msgstr "URL страницы"
+
+msgid "Page title"
+msgstr "Заголовок страницы"
+
+msgid "The number of displayed products"
+msgstr "Количество выводимых товаров"
+
+msgid "Title block"
+msgstr "Заголовок блока"
+
+msgid "Image size"
+msgstr "Размер изображения"
+
+msgid "Show button \"Clear All\""
+msgstr "Выводить кнопку \"Очистить список\""
+
+msgid "Display a brief description"
+msgstr "Выводить краткое описание"
+
+msgid "Use slider"
+msgstr "Использовать слайдер"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Warning! The default template has been modified."
+msgstr "Внимание! Шаблон по умолчанию был изменен."
+
+msgid "Reset changes, use the default template."
+msgstr "Сбросить изменения, использовать шаблон по умолчанию."
+
+msgid "You viewed"
+msgstr "Вы смотрели"
+
+msgid "Viewed products"
+msgstr "Просмотренные товары"
+
+msgid "List of items that the buyer was looking"
+msgstr "Список товаров, которые просматривал покупатель"
+
+msgid "Do not defined template"
+msgstr "Не определён шаблон"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Unable to save the template. Check the write permissions "
+msgstr "Не удаётся сохранить шаблон. Проверьте права на запись "
